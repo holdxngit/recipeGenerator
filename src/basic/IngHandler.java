@@ -20,14 +20,27 @@ public class IngHandler {
     public boolean removeIngredient(String ing) {
         if (ingredients.contains(ing)) {
             ingredients.remove(ing);
+            this.saveIngredients();
             return true;
         }
         return false;
+        
     }
 
 
     public void addIngredient(String ing) {
         ingredients.add(ing);
+        this.saveIngredients();
+    }
+    
+    public void saveIngredients() { 
+        try {
+            reader.writeCsvToFile(ingredients);
+        }
+        catch (IOException e) {
+            System.err.println("Failed to Save to CSV file correctly");
+            e.printStackTrace();
+        }
     }
 
 }
