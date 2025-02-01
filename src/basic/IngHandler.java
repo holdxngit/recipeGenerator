@@ -1,31 +1,32 @@
 package basic;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.List;
 
-public class IngHandler
-{
-    private ArrayList<String> ingredients;
-    private FileReader reader;
+public class IngHandler {
+    private List<String> ingredients;
+    private FileHandler reader;
 
-    public IngHandler()
-    {
-       ArrayList<String> storedIng = reader.readFile();
-       ingredients = new ArrayList<String>();
-       // add in stored ingredients from earlier
-       if (!storedIng.isEmpty()) {
-           ingredients.addAll(storedIng);
-       }
+    public IngHandler() throws IOException {
+        ingredients = reader.readCsvFromFile();
     }
-    
-    public boolean removeIngredient(String ing)
-    {
-        reader.remove(ing);
-        return ingredients.remove(ing);
+
+
+    public boolean isListEmpty() {
+        return ingredients.isEmpty();
     }
-    
-    public void addIngredient(String ing)
-    {
-        reader.add(ing);
+
+
+    public boolean removeIngredient(String ing) {
+        if (ingredients.contains(ing)) {
+            ingredients.remove(ing);
+            return true;
+        }
+        return false;
+    }
+
+
+    public void addIngredient(String ing) {
         ingredients.add(ing);
     }
 
