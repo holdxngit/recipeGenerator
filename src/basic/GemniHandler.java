@@ -11,12 +11,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.net.*;
 
-public class Bingus {
+public class GemniHandler {
     public static void main(String[] args)
         throws IOException,
         InterruptedException {
         Properties prop = new Properties();
-        try (InputStream input = Bingus.class.getClassLoader()
+        try (InputStream input = GemniHandler.class.getClassLoader()
             .getResourceAsStream("config.properties")) {
             if (input == null) {
                 System.out.println("Sorry, unable to find config.properties");
