@@ -191,11 +191,13 @@ public class RecipeApp {
             noIng.setForeground(Color.WHITE);
             listPanel.add(noIng);
         } else {
-            for (String ingredient : ingredients.getIngredients()) {  // Use getIngredients()
+            for (int i = 0; i < ingredients.getIngredients().size(); i++) {  // Use getIngredients()
                 JPanel ingredientPanel = new JPanel();
                 ingredientPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
                 ingredientPanel.setBackground(new Color(10, 10, 10));
                 
+                String ingredient = ingredients.getIngredients().get(i);
+                System.out.println(ingredient);
                 JLabel ingredientLabel = new JLabel(ingredient);
                 ingredientLabel.setFont(new Font("Arial", Font.BOLD, 14)); 
                 ingredientLabel.setForeground(Color.WHITE); 
