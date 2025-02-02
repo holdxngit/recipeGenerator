@@ -27,7 +27,7 @@ public class RecipeApp {
         // Initialize the input screen panel
         inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout());
-
+        
         JPanel topPanel = new JPanel();
         inputPanel.add(topPanel, BorderLayout.NORTH);
 
