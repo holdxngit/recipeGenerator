@@ -33,6 +33,11 @@ public class IngHandler {
         ingredients.add(ing);
         this.saveIngredients();
     }
+    
+    public List<String> getIngredients()
+    {
+        return ingredients;
+    }
 
 
     public void saveIngredients() {
