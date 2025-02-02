@@ -241,8 +241,8 @@ public class RecipeApp {
         String[] recipeNames = {"Recipe 1", "Recipe 2", "Recipe 3"};
         String[] recipeDetails = {
             pr.getRecipes(),
-            "Recipe 2: Ingredients: Ingredient 4, Ingredient 5, Ingredient 6\nSteps: Step 1, Step 2",
-            "Recipe 3: Ingredients: Ingredient 7, Ingredient 8, Ingredient 9\nSteps: Step 1, Step 2"
+            pr.getRecipes(),
+            pr.getRecipes()
         };
 
         for (int i = 0; i < recipeNames.length; i++) {

@@ -16,7 +16,7 @@ public class ProjectRunner {
             System.err.print("Ingredient Handler could not be created");
             e.printStackTrace();
         }
-        numOfRecipes = 3;
+        numOfRecipes = 1;
     }
 
 
@@ -24,7 +24,7 @@ public class ProjectRunner {
     // not have to use every ingredient:
     public String getRecipes() {
         StringBuilder query = new StringBuilder("Give me " + numOfRecipes
-            + " recipes based on the current ingredient list "
+            + "new recipe based on the current ingredient list "
             + "in my house, you do not have to use every ingredient. List of ingredients in the house: ");
         query.append(ing.ingredientLine()); 
         
