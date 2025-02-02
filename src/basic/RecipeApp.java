@@ -13,9 +13,11 @@ public class RecipeApp {
     private JButton viewButton, generateRecipeButton;
     private ArrayList<String> ingredients;
     private CardLayout cardLayout;  // Declare CardLayout at the class level
+    private IngHandler ing;
 
     public RecipeApp() {
-        ingredients = new ArrayList<>();
+        ing = new IngHandler();
+        ingredients = ing.getIngredients();
 
         frame = new JFrame("Recipe App");
         frame.setSize(700, 600);
