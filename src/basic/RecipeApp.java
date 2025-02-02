@@ -59,17 +59,20 @@ public class RecipeApp {
         // Initialize the list of ingredients panel
         listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS)); // Vertical layout for ingredients and buttons
+        listPanel.setBackground(new Color(10, 10, 10));
         JScrollPane scrollPane = new JScrollPane(listPanel);
         frame.add(scrollPane, "list");
 
         // Initialize the recipe panel
         recipePanel = new JPanel();
         recipePanel.setLayout(new BoxLayout(recipePanel, BoxLayout.Y_AXIS));  // Vertical layout for recipes
+        recipePanel.setBackground(new Color(10, 10, 10));
         frame.add(recipePanel, "recipe");
 
         // Initialize the recipe details panel (will show when a recipe is clicked)
         recipeDetailsPanel = new JPanel();
         recipeDetailsPanel.setLayout(new BorderLayout());
+        recipeDetailsPanel.setBackground(new Color(10, 10, 10)); 
 
         // Add all panels to the frame (initial screen is inputPanel)
         frame.add(inputPanel, "input");
@@ -117,10 +120,16 @@ public class RecipeApp {
             for (String ingredient : ingredients) {
                 JPanel ingredientPanel = new JPanel();
                 ingredientPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
+                ingredientPanel.setBackground(new Color(10, 10, 10));
+                
                 JLabel ingredientLabel = new JLabel(ingredient);
-                JButton removeButton = new JButton("Remove");
-
+                JButton removeButton = new JButton("x");
+                removeButton.setBackground(new Color(255, 99, 71)); // Red color for Remove button
+                removeButton.setForeground(Color.WHITE); // White text color for the button
+                removeButton.setFont(new Font("Arial", Font.PLAIN, 12)); // Set font for the button
+                ingredientLabel.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font for ingredients
+                ingredientLabel.setForeground(Color.WHITE); // White text color
+                
                 // Remove ingredient when the button is clicked
                 removeButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -137,6 +146,11 @@ public class RecipeApp {
 
         // Add Back to Input button at the bottom of the list
         JButton backToInputButton = new JButton("Back to Input");
+        backToInputButton.setBackground(new Color(52, 52, 52));
+        backToInputButton.setForeground(Color.WHITE); // White text color
+        backToInputButton.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font
+
+        
         backToInputButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(frame.getContentPane(), "input");
@@ -163,6 +177,8 @@ public class RecipeApp {
 
         for (int i = 0; i < recipeNames.length; i++) {
             JButton recipeButton = new JButton(recipeNames[i]);
+            recipeButton.setBackground(new Color(52, 52, 52));
+            recipeButton.setForeground(Color.WHITE); // White text color
             final String details = recipeDetails[i];
             recipeButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -174,6 +190,9 @@ public class RecipeApp {
 
         // Add Back to Input button to the recipe panel
         JButton backToInputButton = new JButton("Back to Input");
+        backToInputButton.setBackground(new Color(52, 52, 52)); // Light blue color for button
+        backToInputButton.setForeground(Color.WHITE); // White text color
+        backToInputButton.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font
         backToInputButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(frame.getContentPane(), "input");
@@ -190,6 +209,7 @@ public class RecipeApp {
     private void showRecipeDetails(String recipeDetails) {
         JPanel recipeDetailPanel = new JPanel();
         recipeDetailPanel.setLayout(new BorderLayout());
+        recipeDetailPanel.setBackground(new Color(10, 10, 10));
         
         // Create JTextArea to display recipe details
         JTextArea recipeTextArea = new JTextArea();
@@ -209,9 +229,10 @@ public class RecipeApp {
 
         // Customize the back button to match the styling
         JButton backToRecipeButton = new JButton("Back to Recipe List");
-        backToRecipeButton.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font for the button
-        backToRecipeButton.setBackground(new Color(100, 150, 255)); // Set a nice background color for the button
-        backToRecipeButton.setForeground(Color.WHITE); // Set button text color
+        backToRecipeButton.setBackground(new Color(52, 52, 52)); // Light blue color for button
+        backToRecipeButton.setForeground(Color.WHITE); // White text color
+        backToRecipeButton.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font
+
 
         // Add a listener to go back to the recipe list
         backToRecipeButton.addActionListener(new ActionListener() {
