@@ -1,5 +1,6 @@
 package basic;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class RecipeApp {
         ingredients = new ArrayList<>();
 
         frame = new JFrame("Recipe App");
-        frame.setSize(500, 400);
+        frame.setSize(700, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Initialize CardLayout at the class level
@@ -30,31 +31,66 @@ public class RecipeApp {
         inputPanel.setBackground(new Color(255, 255, 255));
         
         JPanel topPanel = new JPanel();
-        topPanel.setBackground(new Color(255, 255, 255)); // Blue background for the top panel
+        topPanel.setBackground(new Color(255, 255, 255)); 
         inputPanel.add(topPanel, BorderLayout.NORTH);
 
+     // Change centerPanel to use BoxLayout for vertical stacking
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new FlowLayout());
-        centerPanel.setBackground(new Color(10, 10, 10)); // Blue background for the center panel
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));  // Vertical stacking
+        centerPanel.setBackground(new Color(10, 10, 10));
 
+        // Center the "Enter Ingredient" label
         JLabel ingredientLabel = new JLabel("Enter Ingredient:");
-        ingredientLabel.setForeground(Color.WHITE); 
+        ingredientLabel.setForeground(Color.WHITE);
+        ingredientLabel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center the label
+        ingredientLabel.setFont(new Font("Arial", Font.BOLD, 18)); 
+        centerPanel.add(Box.createVerticalStrut(50));  // Add space above the label
         centerPanel.add(ingredientLabel);
 
+        // Center the input field
         ingredientField = new JTextField(15);
+        ingredientField.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center the input field
+
+        // Set the preferred, minimum, and maximum sizes for the input field to avoid stretching
+        ingredientField.setPreferredSize(new Dimension(220, 30));  // Width 200px, Height 30px
+        ingredientField.setMinimumSize(new Dimension(220, 30));    // Prevent it from becoming smaller
+        ingredientField.setMaximumSize(new Dimension(220, 30));    // Prevent it from becoming taller
+
+        centerPanel.add(Box.createVerticalStrut(20));  // Space between input field and button
         centerPanel.add(ingredientField);
 
+        // Add more space before the "View Ingredients" button (increase this value to adjust spacing)
+        centerPanel.add(Box.createVerticalStrut(20));  // More space between input field and button
+
+        // Center the "View Ingredients" button
         viewButton = new JButton("View Ingredients");
         viewButton.setBackground(new Color(52, 52, 52)); // Light blue background for button
         viewButton.setForeground(Color.WHITE); // White text for the button
+        viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center the button
         centerPanel.add(viewButton);
 
-        inputPanel.add(centerPanel, BorderLayout.CENTER);
-
+     // Button for "Generate Recipes"
         generateRecipeButton = new JButton("Generate Recipes");
-        generateRecipeButton.setBackground(new Color(52, 52, 52)); // Light blue background for button
-        generateRecipeButton.setForeground(Color.WHITE); // White text for the button
-        inputPanel.add(generateRecipeButton, BorderLayout.SOUTH);
+        generateRecipeButton.setPreferredSize(new Dimension(200, 60));  // Make the button bigger
+        generateRecipeButton.setBackground(new Color(52, 52, 52)); // Background color
+        generateRecipeButton.setForeground(Color.WHITE); // Text color
+        generateRecipeButton.setFont(new Font("Arial", Font.BOLD, 16)); // Font size for better visibility
+        generateRecipeButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center the button
+
+        // Add components to the center panel
+        centerPanel.add(Box.createVerticalStrut(50));  // Space before the label
+        centerPanel.add(ingredientLabel);
+        centerPanel.add(Box.createVerticalStrut(20));  // Space between label and input field
+        centerPanel.add(ingredientField);
+        centerPanel.add(Box.createVerticalStrut(30));  // Space between input field and button
+        centerPanel.add(viewButton);
+        centerPanel.add(Box.createVerticalStrut(30));  // Space before the circular button
+
+        // Add the "Generate Recipes" button at the bottom
+        centerPanel.add(Box.createVerticalStrut(50));  // Space before the Generate button
+        centerPanel.add(generateRecipeButton);  // This button is now at the bottom center
+
+        inputPanel.add(centerPanel, BorderLayout.CENTER);
 
         // Initialize the list of ingredients panel
         listPanel = new JPanel();
@@ -123,10 +159,17 @@ public class RecipeApp {
                 ingredientPanel.setBackground(new Color(10, 10, 10));
                 
                 JLabel ingredientLabel = new JLabel(ingredient);
-                JButton removeButton = new JButton("x");
-                removeButton.setBackground(new Color(255, 99, 71)); // Red color for Remove button
-                removeButton.setForeground(Color.WHITE); // White text color for the button
+                JButton removeButton = new JButton("X");
+                removeButton.setForeground(new Color(255, 99, 71)); // White text color for the button
                 removeButton.setFont(new Font("Arial", Font.PLAIN, 12)); // Set font for the button
+                // Set a smaller size for the button
+                removeButton.setBorder(BorderFactory.createEmptyBorder()); // Remove the border
+                removeButton.setContentAreaFilled(false); // Make the content area transparent
+                removeButton.setFocusPainted(false); // Disable the focus border when clicked
+                removeButton.setPreferredSize(new Dimension(10, 10)); // Width of 30 and height of 30
+
+                // Optional: If you want the button to look better, you can also set the border to null
+                removeButton.setBorder(BorderFactory.createEmptyBorder()); // Optional: Removes the button border
                 ingredientLabel.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font for ingredients
                 ingredientLabel.setForeground(Color.WHITE); // White text color
                 
