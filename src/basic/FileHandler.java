@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class FileHandler {
     private String filePath;
@@ -55,11 +56,6 @@ public class FileHandler {
         return data;
     }
 
-    // Method to rewrite CSV data back to the file
-    public void rewriteCsvToFile(List<String> data) throws IOException {
-        writeCsvToFile(data);  // Reuse the writeCsvToFile method
-    }
-
     public static void main(String[] args) {
         FileHandler manager = new FileHandler("test.csv");
         List<String> dataToWrite = new ArrayList<>();
@@ -75,9 +71,17 @@ public class FileHandler {
             for (String line : readData) {
                 System.out.println(line);
             }
-            manager.rewriteCsvToFile(readData);
+            manager.writeCsvToFile(readData);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static String joinStrings(List<String> strings) {
+        StringJoiner joiner = new StringJoiner(",");
+        for (String s : strings) {
+            joiner.add(s);
+        }
+        return joiner.toString();
     }
 }
