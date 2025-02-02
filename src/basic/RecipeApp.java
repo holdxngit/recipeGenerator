@@ -96,9 +96,34 @@ public class RecipeApp {
         listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS)); // Vertical layout for ingredients and buttons
         listPanel.setBackground(new Color(10, 10, 10));
+        listPanel.setBorder(BorderFactory.createEmptyBorder(20, 10, 10, 10)); // Add 20px top padding
         JScrollPane scrollPane = new JScrollPane(listPanel);
         frame.add(scrollPane, "list");
 
+     // Create a separate panel for the "Back to Input" button to always keep it fixed at the top
+        JPanel backPanel = new JPanel();
+        backPanel.setLayout(new FlowLayout(FlowLayout.CENTER));  // Center the button
+        backPanel.setBackground(new Color(10, 10, 10));  // Same background as listPanel
+
+        JButton backToInputButton = new JButton("Back to Input");
+        backToInputButton.setBackground(new Color(52, 52, 52));
+        backToInputButton.setForeground(Color.WHITE);
+        backToInputButton.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font
+        backToInputButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center the button
+        backToInputButton.addActionListener(e -> cardLayout.show(frame.getContentPane(), "input"));
+
+        // Add the "Back to Input" button to the fixed top panel
+        backPanel.add(backToInputButton);
+
+        // Add the backPanel (which contains the fixed "Back to Input" button) to the frame
+        frame.add(backPanel, BorderLayout.NORTH);
+        
+        // Modify the listPanel to include this backPanel
+        listPanel.setLayout(new BorderLayout());  // Use BorderLayout for the listPanel so we can place the backPanel at the top
+        listPanel.add(backPanel, BorderLayout.NORTH); // Add backPanel at the top of the listPanel
+
+        frame.setVisible(true);
+    
         // Initialize the recipe panel
         recipePanel = new JPanel();
         recipePanel.setLayout(new BoxLayout(recipePanel, BoxLayout.Y_AXIS));  // Vertical layout for recipes
@@ -161,6 +186,10 @@ public class RecipeApp {
                 ingredientPanel.setBackground(new Color(10, 10, 10));
                 
                 JLabel ingredientLabel = new JLabel(ingredient);
+                ingredientLabel.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font for ingredients
+                ingredientLabel.setForeground(Color.WHITE); // White text color
+                ingredientLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));  // Add left padding (20px)
+
                 JButton removeButton = new JButton("X");
                 removeButton.setForeground(new Color(255, 99, 71)); // White text color for the button
                 removeButton.setFont(new Font("Arial", Font.PLAIN, 12)); // Set font for the button
@@ -189,19 +218,6 @@ public class RecipeApp {
             }
         }
 
-        // Add Back to Input button at the bottom of the list
-        JButton backToInputButton = new JButton("Back to Input");
-        backToInputButton.setBackground(new Color(52, 52, 52));
-        backToInputButton.setForeground(Color.WHITE); // White text color
-        backToInputButton.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font
-
-        
-        backToInputButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(frame.getContentPane(), "input");
-            }
-        });
-        listPanel.add(backToInputButton);
 
         // Revalidate and repaint to reflect changes
         listPanel.revalidate();
@@ -232,18 +248,6 @@ public class RecipeApp {
             });
             recipePanel.add(recipeButton);
         }
-
-        // Add Back to Input button to the recipe panel
-        JButton backToInputButton = new JButton("Back to Input");
-        backToInputButton.setBackground(new Color(52, 52, 52)); // Light blue color for button
-        backToInputButton.setForeground(Color.WHITE); // White text color
-        backToInputButton.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font
-        backToInputButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(frame.getContentPane(), "input");
-            }
-        });
-        recipePanel.add(backToInputButton);
 
         // Revalidate and repaint to reflect changes
         recipePanel.revalidate();
