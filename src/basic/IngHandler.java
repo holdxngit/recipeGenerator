@@ -1,9 +1,7 @@
 package basic;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class IngHandler {
     private List<String> ingredients;
@@ -57,23 +55,4 @@ public class IngHandler {
         return FileHandler.joinStrings(ingredients);
     }
     
-
-    public static <T> ArrayList<T> listToArrayList(List<T> list) {
-        return new ArrayList<>(list);
-    }
-
-    public static <T> List<T> arrayListToList(ArrayList<T> arrayList) {
-        return new ArrayList<>(arrayList);
-    }
-
-    public static void main(String[] args) {
-        // Example usage of converting a List to an ArrayList
-        List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-        ArrayList<String> arrayList = listToArrayList(list);
-        System.out.println("ArrayList: " + arrayList);
-
-        // Example usage of converting an ArrayList to a List
-        List<String> newList = arrayListToList(arrayList);
-        System.out.println("List: " + newList);
-    }
 }
