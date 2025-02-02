@@ -12,18 +12,19 @@ public class RecipeApp {
     private JPanel inputPanel, listPanel, recipePanel, recipeDetailsPanel;
     private JTextField ingredientField;
     private JButton viewButton, generateRecipeButton;
-    private ArrayList<String> ingredients;
     private CardLayout cardLayout;  // Declare CardLayout at the class level
-    private IngHandler ing;
+    private IngHandler ingredients;
 
     public RecipeApp() {
-        try {
-            ing = new IngHandler();
+        
+        try
+        {
+            ingredients = new IngHandler();
         }
-        catch (IOException e) {
+        catch (IOException e)
+        {
             e.printStackTrace();
-        }
-        ingredients = IngHandler.listToArrayList(ing.getIngredients());  
+        }  
 
         frame = new JFrame("Recipe App");
         frame.setSize(700, 600);
@@ -169,7 +170,7 @@ public class RecipeApp {
             public void actionPerformed(ActionEvent e) {
                 String ingredient = ingredientField.getText();
                 if (!ingredient.isEmpty()) {
-                    ingredients.add(ingredient);  // Add ingredient to list
+                    ingredients.addIngredient(ingredient);  // Add ingredient to list
                     ingredientField.setText("");  // Clear the input field
                 } else {
                     JOptionPane.showMessageDialog(frame, "Please enter an ingredient!");  // Display warning
@@ -183,39 +184,32 @@ public class RecipeApp {
     // Updates the ingredient list and adds remove buttons
     private void updateIngredientList() {
         listPanel.removeAll();  // Clear the listPanel before updating
-        if (ingredients.isEmpty()) {
+        if (ingredients.isListEmpty()) {
             JLabel noIng = new JLabel("No ingredients added.");
             noIng.setForeground(Color.WHITE);
             listPanel.add(noIng);
         } else {
-            for (String ingredient : ingredients) {
+            for (String ingredient : ingredients.getIngredients()) {  // Use getIngredients()
                 JPanel ingredientPanel = new JPanel();
                 ingredientPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
                 ingredientPanel.setBackground(new Color(10, 10, 10));
                 
                 JLabel ingredientLabel = new JLabel(ingredient);
-                ingredientLabel.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font for ingredients
-                ingredientLabel.setForeground(Color.WHITE); // White text color
-                ingredientLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));  // Add left padding (20px)
+                ingredientLabel.setFont(new Font("Arial", Font.BOLD, 14)); 
+                ingredientLabel.setForeground(Color.WHITE); 
+                ingredientLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));  
 
                 JButton removeButton = new JButton("X");
-                removeButton.setForeground(new Color(255, 99, 71)); // White text color for the button
-                removeButton.setFont(new Font("Arial", Font.PLAIN, 12)); // Set font for the button
-                // Set a smaller size for the button
-                removeButton.setBorder(BorderFactory.createEmptyBorder()); // Remove the border
-                removeButton.setContentAreaFilled(false); // Make the content area transparent
-                removeButton.setFocusPainted(false); // Disable the focus border when clicked
-                removeButton.setPreferredSize(new Dimension(10, 10)); // Width of 30 and height of 30
+                removeButton.setForeground(new Color(255, 99, 71)); 
+                removeButton.setFont(new Font("Arial", Font.PLAIN, 12)); 
+                removeButton.setBorder(BorderFactory.createEmptyBorder()); 
+                removeButton.setContentAreaFilled(false); 
+                removeButton.setFocusPainted(false); 
+                removeButton.setPreferredSize(new Dimension(10, 10)); 
 
-                // Optional: If you want the button to look better, you can also set the border to null
-                removeButton.setBorder(BorderFactory.createEmptyBorder()); // Optional: Removes the button border
-                ingredientLabel.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font for ingredients
-                ingredientLabel.setForeground(Color.WHITE); // White text color
-                
-                // Remove ingredient when the button is clicked
                 removeButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        ingredients.remove(ingredient);
+                        ingredients.removeIngredient(ingredient);  // Remove ingredient using the new method
                         updateIngredientList();  // Refresh the list
                     }
                 });
