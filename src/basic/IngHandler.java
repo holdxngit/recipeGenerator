@@ -8,7 +8,7 @@ public class IngHandler {
     private FileHandler reader;
 
     public IngHandler() throws IOException {
-        reader = new FileHandler("recipes.csv"); 
+        reader = new FileHandler("recipes.csv");
         ingredients = reader.readCsvFromFile();
     }
 
@@ -25,7 +25,7 @@ public class IngHandler {
             return true;
         }
         return false;
-        
+
     }
 
 
@@ -33,8 +33,9 @@ public class IngHandler {
         ingredients.add(ing);
         this.saveIngredients();
     }
-    
-    public void saveIngredients() { 
+
+
+    public void saveIngredients() {
         try {
             reader.writeCsvToFile(ingredients);
         }
@@ -44,4 +45,8 @@ public class IngHandler {
         }
     }
 
+
+    public String ingredientLine() {
+        return FileHandler.joinStrings(ingredients);
+    }
 }

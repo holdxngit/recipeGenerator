@@ -77,7 +77,6 @@ public class GeminiHandler {
             }
             prop.load(input);
             String apiKey = prop.getProperty("api_key");
-            System.out.println("API Key: " + apiKey);
 
             String requestBody = "{\n" + "  \"contents\": [{\n"
                 + "    \"parts\": [{\"text\": \"" + request + "\"}]\n"
