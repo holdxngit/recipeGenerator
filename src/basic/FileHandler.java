@@ -14,8 +14,22 @@ public class FileHandler {
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
+        this.ensureFileExists();
     }
-
+    
+    private void ensureFileExists() {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile(); // Create the file if it does not exist
+                System.out.println("File created: " + filePath);
+            } catch (IOException e) {
+                System.err.println("Unable to create file: " + filePath);
+                e.printStackTrace();
+            }
+        }
+    }
+    
     // Method to create a new file and write initial CSV data as single strings per line
     public void writeCsvToFile(List<String> data) throws IOException {
         File file = new File(filePath);

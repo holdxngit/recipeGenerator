@@ -6,14 +6,16 @@ import java.util.List;
 
 public class TestHandler {
     public static void main(String[] args) {
-        FileHandler manager = new FileHandler("test.csv");
         try {
-            List<String> storedIng = manager.readCsvFromFile();
-            System.out.println(storedIng.get(0));
+            IngHandler ing = new IngHandler();
+            ing.addIngredient("Cucumber");
+            ing.addIngredient("Mayo");
+            ing.addIngredient("Dead Dog");
         }
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } 
+        
     }
 }

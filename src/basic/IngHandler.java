@@ -8,6 +8,7 @@ public class IngHandler {
     private FileHandler reader;
 
     public IngHandler() throws IOException {
+        reader = new FileHandler("recipes.csv"); 
         ingredients = reader.readCsvFromFile();
     }
 
