@@ -27,25 +27,33 @@ public class RecipeApp {
         // Initialize the input screen panel
         inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout());
+        inputPanel.setBackground(new Color(255, 255, 255));
         
         JPanel topPanel = new JPanel();
+        topPanel.setBackground(new Color(255, 255, 255)); // Blue background for the top panel
         inputPanel.add(topPanel, BorderLayout.NORTH);
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new FlowLayout());
+        centerPanel.setBackground(new Color(10, 10, 10)); // Blue background for the center panel
 
         JLabel ingredientLabel = new JLabel("Enter Ingredient:");
+        ingredientLabel.setForeground(Color.WHITE); 
         centerPanel.add(ingredientLabel);
 
         ingredientField = new JTextField(15);
         centerPanel.add(ingredientField);
 
         viewButton = new JButton("View Ingredients");
+        viewButton.setBackground(new Color(52, 52, 52)); // Light blue background for button
+        viewButton.setForeground(Color.WHITE); // White text for the button
         centerPanel.add(viewButton);
 
         inputPanel.add(centerPanel, BorderLayout.CENTER);
 
         generateRecipeButton = new JButton("Generate Recipes");
+        generateRecipeButton.setBackground(new Color(52, 52, 52)); // Light blue background for button
+        generateRecipeButton.setForeground(Color.WHITE); // White text for the button
         inputPanel.add(generateRecipeButton, BorderLayout.SOUTH);
 
         // Initialize the list of ingredients panel
