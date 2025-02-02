@@ -151,7 +151,9 @@ public class RecipeApp {
     private void updateIngredientList() {
         listPanel.removeAll();  // Clear the listPanel before updating
         if (ingredients.isEmpty()) {
-            listPanel.add(new JLabel("No ingredients added."));
+            JLabel noIng = new JLabel("No ingredients added.");
+            noIng.setForeground(Color.WHITE);
+            listPanel.add(noIng);
         } else {
             for (String ingredient : ingredients) {
                 JPanel ingredientPanel = new JPanel();
