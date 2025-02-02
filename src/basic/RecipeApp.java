@@ -3,6 +3,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RecipeApp {
@@ -16,8 +17,13 @@ public class RecipeApp {
     private IngHandler ing;
 
     public RecipeApp() {
-        ing = new IngHandler();
-        ingredients = ing.getIngredients();
+        try {
+            ing = new IngHandler();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        ingredients = IngHandler.listToArrayList(ing.getIngredients());  
 
         frame = new JFrame("Recipe App");
         frame.setSize(700, 600);
