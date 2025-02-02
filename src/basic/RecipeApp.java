@@ -25,10 +25,12 @@ public class RecipeApp {
         {
             e.printStackTrace();
         }  
-
-        frame = new JFrame("Recipe App");
+        
+        
+        frame = new JFrame("PantryPal");
         frame.setSize(700, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
 
         // Initialize CardLayout at the class level
         cardLayout = new CardLayout();
@@ -229,11 +231,14 @@ public class RecipeApp {
     // Displays 3 recipe buttons and opens a new JPanel with details when clicked
     private void displayRecipes() {
         recipePanel.removeAll();  // Clear the recipe panel before updating
-
+        
+        ProjectRunner pr = new ProjectRunner(); 
+        
+        
         // Example recipes (these could be dynamically generated based on the user's input)
         String[] recipeNames = {"Recipe 1", "Recipe 2", "Recipe 3"};
         String[] recipeDetails = {
-            "Recipe 1: Ingredients: Ingredient 1, Ingredient 2, Ingredient 3\nSteps: Step 1, Step 2",
+            pr.getRecipes(),
             "Recipe 2: Ingredients: Ingredient 4, Ingredient 5, Ingredient 6\nSteps: Step 1, Step 2",
             "Recipe 3: Ingredients: Ingredient 7, Ingredient 8, Ingredient 9\nSteps: Step 1, Step 2"
         };
